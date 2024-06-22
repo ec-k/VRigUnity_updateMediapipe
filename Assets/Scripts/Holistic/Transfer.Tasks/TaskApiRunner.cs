@@ -10,7 +10,7 @@ using UnityEngine;
 
 using Stopwatch = System.Diagnostics.Stopwatch;
 
-namespace Mediapipe.Unity.Sample
+namespace HardCoded.VRigUnity.Updated
 {
   public abstract class TaskApiRunner : MonoBehaviour
   {

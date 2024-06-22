@@ -9,14 +9,18 @@ using UnityEngine;
 
 using Mediapipe.Tasks.Vision.PoseLandmarker;
 using UnityEngine.Rendering;
+using Mediapipe.Unity;
+using Mediapipe;
+using Experimental = Mediapipe.Unity.Experimental;
+using Tasks = Mediapipe.Tasks;
 
-namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
+namespace HardCoded.VRigUnity.Updated
 {
   public class PoseLandmarkerRunner : VisionTaskApiRunner<PoseLandmarker>
   {
     [SerializeField] private PoseLandmarkerResultAnnotationController _poseLandmarkerResultAnnotationController;
 
-    private Experimental.TextureFramePool _textureFramePool;
+    private Mediapipe.Unity.Experimental.TextureFramePool _textureFramePool;
 
     public readonly PoseLandmarkDetectionConfig config = new PoseLandmarkDetectionConfig();
 
@@ -48,7 +52,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
 
       if (!imageSource.isPrepared)
       {
-        Logger.LogError(TAG, "Failed to start ImageSource, exiting...");
+        Mediapipe.Unity.Logger.LogError(TAG, "Failed to start ImageSource, exiting...");
         yield break;
       }
 

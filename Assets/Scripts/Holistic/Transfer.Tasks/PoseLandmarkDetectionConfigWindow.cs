@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mediapipe.Unity.Sample.UI;
 
-namespace Mediapipe.Unity.Sample.PoseLandmarkDetection.UI
+namespace HardCoded.VRigUnity.Updated
 {
   public class PoseLandmarkDetectionConfigWindow : ModalContents
   {
@@ -34,7 +34,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection.UI
 
     private void SwitchDelegate()
     {
-      _config.Delegate = (Tasks.Core.BaseOptions.Delegate)_delegateInput.value;
+      _config.Delegate = (Mediapipe.Tasks.Core.BaseOptions.Delegate)_delegateInput.value;
       _isChanged = true;
     }
 
@@ -46,7 +46,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection.UI
 
     private void SwitchRunningMode()
     {
-      _config.RunningMode = (Tasks.Vision.Core.RunningMode)_runningModeInput.value;
+      _config.RunningMode = (Mediapipe.Tasks.Vision.Core.RunningMode)_runningModeInput.value;
       _isChanged = true;
     }
 
@@ -107,7 +107,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection.UI
 
     private void InitializeDelegate()
     {
-      InitializeDropdown<Tasks.Core.BaseOptions.Delegate>(_delegateInput, _config.Delegate.ToString());
+      InitializeDropdown<Mediapipe.Tasks.Core.BaseOptions.Delegate>(_delegateInput, _config.Delegate.ToString());
       _delegateInput.onValueChanged.AddListener(delegate { SwitchDelegate(); });
     }
 
@@ -119,7 +119,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection.UI
 
     private void InitializeRunningMode()
     {
-      InitializeDropdown<Tasks.Vision.Core.RunningMode>(_runningModeInput, _config.RunningMode.ToString());
+      InitializeDropdown<Mediapipe.Tasks.Vision.Core.RunningMode>(_runningModeInput, _config.RunningMode.ToString());
       _runningModeInput.onValueChanged.AddListener(delegate { SwitchRunningMode(); });
     }
 

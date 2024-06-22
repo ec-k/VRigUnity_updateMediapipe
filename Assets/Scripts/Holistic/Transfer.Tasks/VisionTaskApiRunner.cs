@@ -6,10 +6,11 @@
 
 using System.Collections;
 using UnityEngine;
+using Mediapipe.Unity;
 
-namespace Mediapipe.Unity.Sample
+namespace HardCoded.VRigUnity.Updated
 {
-  public abstract class VisionTaskApiRunner<TTask> : TaskApiRunner where TTask : Tasks.Vision.Core.BaseVisionTaskApi
+  public abstract class VisionTaskApiRunner<TTask> : TaskApiRunner where TTask : Mediapipe.Tasks.Vision.Core.BaseVisionTaskApi
   {
     [SerializeField] protected Screen screen;
 

@@ -7,7 +7,7 @@
 using System.ComponentModel;
 using Mediapipe.Tasks.Vision.PoseLandmarker;
 
-namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
+namespace HardCoded.VRigUnity.Updated
 {
   public enum ModelType : int
   {
@@ -19,15 +19,15 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
 
   public class PoseLandmarkDetectionConfig
   {
-    public Tasks.Core.BaseOptions.Delegate Delegate { get; set; } =
+    public Mediapipe.Tasks.Core.BaseOptions.Delegate Delegate { get; set; } =
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-      Tasks.Core.BaseOptions.Delegate.CPU;
+      Mediapipe.Tasks.Core.BaseOptions.Delegate.CPU;
 #else
-    Tasks.Core.BaseOptions.Delegate.GPU;
+    Mediapipe.Tasks.Core.BaseOptions.Delegate.GPU;
 #endif
 
     public ModelType Model { get; set; } = ModelType.BlazePoseFull;
-    public Tasks.Vision.Core.RunningMode RunningMode { get; set; } = Tasks.Vision.Core.RunningMode.LIVE_STREAM;
+    public Mediapipe.Tasks.Vision.Core.RunningMode RunningMode { get; set; } = Mediapipe.Tasks.Vision.Core.RunningMode.LIVE_STREAM;
 
     public int NumPoses { get; set; } = 1;
     public float MinPoseDetectionConfidence { get; set; } = 0.5f;
@@ -56,7 +56,7 @@ namespace Mediapipe.Unity.Sample.PoseLandmarkDetection
     public PoseLandmarkerOptions GetPoseLandmarkerOptions(PoseLandmarkerOptions.ResultCallback resultCallback = null)
     {
       return new PoseLandmarkerOptions(
-        new Tasks.Core.BaseOptions(Delegate, modelAssetPath: ModelPath),
+        new Mediapipe.Tasks.Core.BaseOptions(Delegate, modelAssetPath: ModelPath),
         runningMode: RunningMode,
         numPoses: NumPoses,
         minPoseDetectionConfidence: MinPoseDetectionConfidence,

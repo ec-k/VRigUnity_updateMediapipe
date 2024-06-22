@@ -7,17 +7,9 @@
 namespace HardCoded.VRigUnity.Updated
 {
   [System.Serializable]
-  public enum RunningMode
+  public enum InferenceMode
   {
-    Async,
-    Sync,
-  }
-
-  public static class RunningModeExtension
-  {
-    public static bool IsSynchronous(this RunningMode runningMode)
-    {
-      return runningMode == RunningMode.Sync;
-    }
+    GPU,
+    CPU,
   }
 }

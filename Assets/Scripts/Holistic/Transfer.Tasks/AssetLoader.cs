@@ -5,8 +5,9 @@
 // https://opensource.org/licenses/MIT.
 
 using System.Collections;
+using Mediapipe;
 
-namespace Mediapipe.Unity.Sample
+namespace HardCoded.VRigUnity.Updated
 {
   public static class AssetLoader
   {
