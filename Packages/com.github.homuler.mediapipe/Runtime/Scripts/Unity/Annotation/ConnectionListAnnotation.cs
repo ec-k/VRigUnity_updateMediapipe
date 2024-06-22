@@ -19,13 +19,18 @@ namespace Mediapipe.Unity
     [SerializeField] private Color _color = Color.red;
     [SerializeField, Range(0, 1)] private float _lineWidth = 1.0f;
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
-      ApplyColor(_color);
-      ApplyLineWidth(_lineWidth);
+      if (!UnityEditor.PrefabUtility.IsPartOfAnyPrefab(this))
+      {
+        ApplyColor(_color);
+        ApplyLineWidth(_lineWidth);
+      }
     }
+#endif
 
-    public void Fill(IList<(int, int)> connections, PointListAnnotation points)
+    public void Fill(IReadOnlyList<(int, int)> connections, PointListAnnotation points)
     {
       Draw(connections.Select(pair => new Connection(points[pair.Item1], points[pair.Item2])).ToList());
     }
@@ -42,7 +47,7 @@ namespace Mediapipe.Unity
       ApplyLineWidth(lineWidth);
     }
 
-    public void Draw(IList<Connection> targets)
+    public void Draw(IReadOnlyList<Connection> targets)
     {
       if (ActivateFor(targets))
       {

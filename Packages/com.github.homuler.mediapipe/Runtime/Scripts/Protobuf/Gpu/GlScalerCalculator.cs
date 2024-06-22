@@ -26,18 +26,19 @@ namespace Mediapipe {
           string.Concat(
             "CihtZWRpYXBpcGUvZ3B1L2dsX3NjYWxlcl9jYWxjdWxhdG9yLnByb3RvEglt",
             "ZWRpYXBpcGUaJG1lZGlhcGlwZS9mcmFtZXdvcmsvY2FsY3VsYXRvci5wcm90",
-            "bxoebWVkaWFwaXBlL2dwdS9zY2FsZV9tb2RlLnByb3RvIqYCChlHbFNjYWxl",
+            "bxoebWVkaWFwaXBlL2dwdS9zY2FsZV9tb2RlLnByb3RvItkCChlHbFNjYWxl",
             "ckNhbGN1bGF0b3JPcHRpb25zEhQKDG91dHB1dF93aWR0aBgBIAEoBRIVCg1v",
             "dXRwdXRfaGVpZ2h0GAIgASgFEhcKDG91dHB1dF9zY2FsZRgHIAEoAjoBMRIQ",
             "Cghyb3RhdGlvbhgDIAEoBRIVCg1mbGlwX3ZlcnRpY2FsGAQgASgIEhcKD2Zs",
             "aXBfaG9yaXpvbnRhbBgFIAEoCBItCgpzY2FsZV9tb2RlGAYgASgOMhkubWVk",
-            "aWFwaXBlLlNjYWxlTW9kZS5Nb2RlMlIKA2V4dBIcLm1lZGlhcGlwZS5DYWxj",
-            "dWxhdG9yT3B0aW9ucxiWzapPIAEoCzIkLm1lZGlhcGlwZS5HbFNjYWxlckNh",
-            "bGN1bGF0b3JPcHRpb25z"));
+            "aWFwaXBlLlNjYWxlTW9kZS5Nb2RlEjEKInVzZV9uZWFyZXN0X25laWdoYm9y",
+            "X2ludGVycG9sYXRpb24YCCABKAg6BWZhbHNlMlIKA2V4dBIcLm1lZGlhcGlw",
+            "ZS5DYWxjdWxhdG9yT3B0aW9ucxiWzapPIAEoCzIkLm1lZGlhcGlwZS5HbFNj",
+            "YWxlckNhbGN1bGF0b3JPcHRpb25z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, global::Mediapipe.ScaleModeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.GlScalerCalculatorOptions), global::Mediapipe.GlScalerCalculatorOptions.Parser, new[]{ "OutputWidth", "OutputHeight", "OutputScale", "Rotation", "FlipVertical", "FlipHorizontal", "ScaleMode" }, null, null, new pb::Extension[] { global::Mediapipe.GlScalerCalculatorOptions.Extensions.Ext }, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.GlScalerCalculatorOptions), global::Mediapipe.GlScalerCalculatorOptions.Parser, new[]{ "OutputWidth", "OutputHeight", "OutputScale", "Rotation", "FlipVertical", "FlipHorizontal", "ScaleMode", "UseNearestNeighborInterpolation" }, null, null, new pb::Extension[] { global::Mediapipe.GlScalerCalculatorOptions.Extensions.Ext }, null)
           }));
     }
     #endregion
@@ -45,7 +46,7 @@ namespace Mediapipe {
   }
   #region Messages
   /// <summary>
-  /// Next id: 8.
+  /// Next id: 9.
   /// </summary>
   public sealed partial class GlScalerCalculatorOptions : pb::IMessage<GlScalerCalculatorOptions>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -90,6 +91,7 @@ namespace Mediapipe {
       flipVertical_ = other.flipVertical_;
       flipHorizontal_ = other.flipHorizontal_;
       scaleMode_ = other.scaleMode_;
+      useNearestNeighborInterpolation_ = other.useNearestNeighborInterpolation_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -305,6 +307,37 @@ namespace Mediapipe {
       _hasBits0 &= ~32;
     }
 
+    /// <summary>Field number for the "use_nearest_neighbor_interpolation" field.</summary>
+    public const int UseNearestNeighborInterpolationFieldNumber = 8;
+    private readonly static bool UseNearestNeighborInterpolationDefaultValue = false;
+
+    private bool useNearestNeighborInterpolation_;
+    /// <summary>
+    /// Whether to use nearest neighbor interpolation. Default to use linear
+    /// interpolation.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool UseNearestNeighborInterpolation {
+      get { if ((_hasBits0 & 128) != 0) { return useNearestNeighborInterpolation_; } else { return UseNearestNeighborInterpolationDefaultValue; } }
+      set {
+        _hasBits0 |= 128;
+        useNearestNeighborInterpolation_ = value;
+      }
+    }
+    /// <summary>Gets whether the "use_nearest_neighbor_interpolation" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUseNearestNeighborInterpolation {
+      get { return (_hasBits0 & 128) != 0; }
+    }
+    /// <summary>Clears the value of the "use_nearest_neighbor_interpolation" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUseNearestNeighborInterpolation() {
+      _hasBits0 &= ~128;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -327,6 +360,7 @@ namespace Mediapipe {
       if (FlipVertical != other.FlipVertical) return false;
       if (FlipHorizontal != other.FlipHorizontal) return false;
       if (ScaleMode != other.ScaleMode) return false;
+      if (UseNearestNeighborInterpolation != other.UseNearestNeighborInterpolation) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -341,6 +375,7 @@ namespace Mediapipe {
       if (HasFlipVertical) hash ^= FlipVertical.GetHashCode();
       if (HasFlipHorizontal) hash ^= FlipHorizontal.GetHashCode();
       if (HasScaleMode) hash ^= ScaleMode.GetHashCode();
+      if (HasUseNearestNeighborInterpolation) hash ^= UseNearestNeighborInterpolation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -387,6 +422,10 @@ namespace Mediapipe {
         output.WriteRawTag(61);
         output.WriteFloat(OutputScale);
       }
+      if (HasUseNearestNeighborInterpolation) {
+        output.WriteRawTag(64);
+        output.WriteBool(UseNearestNeighborInterpolation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -425,6 +464,10 @@ namespace Mediapipe {
         output.WriteRawTag(61);
         output.WriteFloat(OutputScale);
       }
+      if (HasUseNearestNeighborInterpolation) {
+        output.WriteRawTag(64);
+        output.WriteBool(UseNearestNeighborInterpolation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -455,6 +498,9 @@ namespace Mediapipe {
       }
       if (HasScaleMode) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ScaleMode);
+      }
+      if (HasUseNearestNeighborInterpolation) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -488,6 +534,9 @@ namespace Mediapipe {
       }
       if (other.HasScaleMode) {
         ScaleMode = other.ScaleMode;
+      }
+      if (other.HasUseNearestNeighborInterpolation) {
+        UseNearestNeighborInterpolation = other.UseNearestNeighborInterpolation;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -532,6 +581,10 @@ namespace Mediapipe {
             OutputScale = input.ReadFloat();
             break;
           }
+          case 64: {
+            UseNearestNeighborInterpolation = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -573,6 +626,10 @@ namespace Mediapipe {
           }
           case 61: {
             OutputScale = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            UseNearestNeighborInterpolation = input.ReadBool();
             break;
           }
         }

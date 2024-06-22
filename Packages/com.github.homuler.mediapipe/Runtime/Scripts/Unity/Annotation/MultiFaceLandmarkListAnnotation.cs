@@ -7,6 +7,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using mptcc = Mediapipe.Tasks.Components.Containers;
+
 namespace Mediapipe.Unity
 {
 #pragma warning disable IDE0065
@@ -24,17 +26,22 @@ namespace Mediapipe.Unity
     [SerializeField, Range(0, 1)] private float _faceConnectionWidth = 1.0f;
     [SerializeField, Range(0, 1)] private float _irisCircleWidth = 1.0f;
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
-      ApplyFaceLandmarkColor(_faceLandmarkColor);
-      ApplyIrisLandmarkColor(_irisLandmarkColor);
-      ApplyFaceLandmarkRadius(_faceLandmarkRadius);
-      ApplyIrisLandmarkRadius(_irisLandmarkRadius);
-      ApplyFaceConnectionColor(_faceConnectionColor);
-      ApplyIrisCircleColor(_irisCircleColor);
-      ApplyFaceConnectionWidth(_faceConnectionWidth);
-      ApplyIrisCircleWidth(_irisCircleWidth);
+      if (!UnityEditor.PrefabUtility.IsPartOfAnyPrefab(this))
+      {
+        ApplyFaceLandmarkColor(_faceLandmarkColor);
+        ApplyIrisLandmarkColor(_irisLandmarkColor);
+        ApplyFaceLandmarkRadius(_faceLandmarkRadius);
+        ApplyIrisLandmarkRadius(_irisLandmarkRadius);
+        ApplyFaceConnectionColor(_faceConnectionColor);
+        ApplyIrisCircleColor(_irisCircleColor);
+        ApplyFaceConnectionWidth(_faceConnectionWidth);
+        ApplyIrisCircleWidth(_irisCircleWidth);
+      }
     }
+#endif
 
     public void SetFaceLandmarkRadius(float radius)
     {
@@ -84,7 +91,18 @@ namespace Mediapipe.Unity
       ApplyIrisCircleColor(_irisCircleColor);
     }
 
-    public void Draw(IList<NormalizedLandmarkList> targets, bool visualizeZ = false)
+    public void Draw(IReadOnlyList<NormalizedLandmarkList> targets, bool visualizeZ = false)
+    {
+      if (ActivateFor(targets))
+      {
+        CallActionForAll(targets, (annotation, target) =>
+        {
+          if (annotation != null) { annotation.Draw(target, visualizeZ); }
+        });
+      }
+    }
+
+    public void Draw(IReadOnlyList<mptcc.NormalizedLandmarks> targets, bool visualizeZ = false)
     {
       if (ActivateFor(targets))
       {

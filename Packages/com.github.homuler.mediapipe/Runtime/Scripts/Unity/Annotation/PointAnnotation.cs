@@ -8,6 +8,7 @@ using Mediapipe.Unity.CoordinateSystem;
 using UnityEngine;
 
 using mplt = Mediapipe.LocationData.Types;
+using mptcc = Mediapipe.Tasks.Components.Containers;
 
 namespace Mediapipe.Unity
 {
@@ -75,37 +76,16 @@ namespace Mediapipe.Unity
       }
     }
 
-    public void Draw(NormalizedPoint2D target)
+    public void Draw(in mptcc.NormalizedLandmark target, bool visualizeZ = true)
     {
       if (ActivateFor(target))
       {
-        var position = GetScreenRect().GetPoint(target, rotationAngle, isMirrored);
-        transform.localPosition = position;
-      }
-    }
-
-    public void Draw(Point3D target, Vector2 focalLength, Vector2 principalPoint, float zScale, bool visualizeZ = true)
-    {
-      if (ActivateFor(target))
-      {
-        var position = GetScreenRect().GetPoint(target, focalLength, principalPoint, zScale, rotationAngle, isMirrored);
+        var position = GetScreenRect().GetPoint(in target, rotationAngle, isMirrored);
         if (!visualizeZ)
         {
           position.z = 0.0f;
         }
         transform.localPosition = position;
-      }
-    }
-
-    public void Draw(AnnotatedKeyPoint target, Vector2 focalLength, Vector2 principalPoint, float zScale, bool visualizeZ = true)
-    {
-      if (visualizeZ)
-      {
-        Draw(target?.Point3D, focalLength, principalPoint, zScale, true);
-      }
-      else
-      {
-        Draw(target?.Point2D);
       }
     }
 
@@ -115,6 +95,15 @@ namespace Mediapipe.Unity
       {
         Draw(GetScreenRect().GetPoint(target, rotationAngle, isMirrored));
         SetColor(GetColor(target.Score, threshold));
+      }
+    }
+
+    public void Draw(mptcc.NormalizedKeypoint target, float threshold = 0.0f)
+    {
+      if (ActivateFor(target))
+      {
+        Draw(GetScreenRect().GetPoint(target, rotationAngle, isMirrored));
+        SetColor(GetColor(target.score ?? 1.0f, threshold));
       }
     }
 

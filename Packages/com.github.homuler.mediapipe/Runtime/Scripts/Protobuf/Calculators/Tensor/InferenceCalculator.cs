@@ -26,39 +26,45 @@ namespace Mediapipe {
           string.Concat(
             "CjdtZWRpYXBpcGUvY2FsY3VsYXRvcnMvdGVuc29yL2luZmVyZW5jZV9jYWxj",
             "dWxhdG9yLnByb3RvEgltZWRpYXBpcGUaJG1lZGlhcGlwZS9mcmFtZXdvcmsv",
-            "Y2FsY3VsYXRvci5wcm90byKTCQoaSW5mZXJlbmNlQ2FsY3VsYXRvck9wdGlv",
-            "bnMSEgoKbW9kZWxfcGF0aBgBIAEoCRIaCgd1c2VfZ3B1GAIgASgIOgVmYWxz",
-            "ZUICGAESHAoJdXNlX25uYXBpGAMgASgIOgVmYWxzZUICGAESGgoOY3B1X251",
-            "bV90aHJlYWQYBCABKAU6Ai0xEkAKCGRlbGVnYXRlGAUgASgLMi4ubWVkaWFw",
-            "aXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLkRlbGVnYXRlGvIGCghE",
-            "ZWxlZ2F0ZRJHCgZ0ZmxpdGUYASABKAsyNS5tZWRpYXBpcGUuSW5mZXJlbmNl",
-            "Q2FsY3VsYXRvck9wdGlvbnMuRGVsZWdhdGUuVGZMaXRlSAASQQoDZ3B1GAIg",
-            "ASgLMjIubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRpb25zLkRl",
-            "bGVnYXRlLkdwdUgAEkUKBW5uYXBpGAMgASgLMjQubWVkaWFwaXBlLkluZmVy",
-            "ZW5jZUNhbGN1bGF0b3JPcHRpb25zLkRlbGVnYXRlLk5uYXBpSAASSQoHeG5u",
-            "cGFjaxgEIAEoCzI2Lm1lZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0",
-            "aW9ucy5EZWxlZ2F0ZS5Ybm5wYWNrSAAaCAoGVGZMaXRlGsIDCgNHcHUSIwoU",
-            "dXNlX2FkdmFuY2VkX2dwdV9hcGkYASABKAg6BWZhbHNlEkgKA2FwaRgEIAEo",
-            "DjI2Lm1lZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5EZWxl",
-            "Z2F0ZS5HcHUuQXBpOgNBTlkSIgoUYWxsb3dfcHJlY2lzaW9uX2xvc3MYAyAB",
-            "KAg6BHRydWUSGgoSY2FjaGVkX2tlcm5lbF9wYXRoGAIgASgJEhwKFHNlcmlh",
-            "bGl6ZWRfbW9kZWxfZGlyGAcgASgJEhMKC21vZGVsX3Rva2VuGAggASgJEmEK",
-            "BXVzYWdlGAUgASgOMkEubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JP",
-            "cHRpb25zLkRlbGVnYXRlLkdwdS5JbmZlcmVuY2VVc2FnZToPU1VTVEFJTkVE",
-            "X1NQRUVEIiYKA0FwaRIHCgNBTlkQABIKCgZPUEVOR0wQARIKCgZPUEVOQ0wQ",
-            "AiJOCg5JbmZlcmVuY2VVc2FnZRIPCgtVTlNQRUNJRklFRBAAEhYKEkZBU1Rf",
-            "U0lOR0xFX0FOU1dFUhABEhMKD1NVU1RBSU5FRF9TUEVFRBACGkkKBU5uYXBp",
-            "EhEKCWNhY2hlX2RpchgBIAEoCRITCgttb2RlbF90b2tlbhgCIAEoCRIYChBh",
-            "Y2NlbGVyYXRvcl9uYW1lGAMgASgJGiIKB1hubnBhY2sSFwoLbnVtX3RocmVh",
-            "ZHMYASABKAU6Ai0xQgoKCGRlbGVnYXRlMlQKA2V4dBIcLm1lZGlhcGlwZS5D",
-            "YWxjdWxhdG9yT3B0aW9ucxj308ugASABKAsyJS5tZWRpYXBpcGUuSW5mZXJl",
-            "bmNlQ2FsY3VsYXRvck9wdGlvbnNCQQolY29tLmdvb2dsZS5tZWRpYXBpcGUu",
-            "Y2FsY3VsYXRvci5wcm90b0IYSW5mZXJlbmNlQ2FsY3VsYXRvclByb3Rv"));
+            "Y2FsY3VsYXRvci5wcm90bxosbWVkaWFwaXBlL2ZyYW1ld29yay9jYWxjdWxh",
+            "dG9yX29wdGlvbnMucHJvdG8i1QoKGkluZmVyZW5jZUNhbGN1bGF0b3JPcHRp",
+            "b25zEhIKCm1vZGVsX3BhdGgYASABKAkSGgoHdXNlX2dwdRgCIAEoCDoFZmFs",
+            "c2VCAhgBEhwKCXVzZV9ubmFwaRgDIAEoCDoFZmFsc2VCAhgBEhoKDmNwdV9u",
+            "dW1fdGhyZWFkGAQgASgFOgItMRJACghkZWxlZ2F0ZRgFIAEoCzIuLm1lZGlh",
+            "cGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5EZWxlZ2F0ZRq0CAoI",
+            "RGVsZWdhdGUSRwoGdGZsaXRlGAEgASgLMjUubWVkaWFwaXBlLkluZmVyZW5j",
+            "ZUNhbGN1bGF0b3JPcHRpb25zLkRlbGVnYXRlLlRmTGl0ZUgAEkEKA2dwdRgC",
+            "IAEoCzIyLm1lZGlhcGlwZS5JbmZlcmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5E",
+            "ZWxlZ2F0ZS5HcHVIABJFCgVubmFwaRgDIAEoCzI0Lm1lZGlhcGlwZS5JbmZl",
+            "cmVuY2VDYWxjdWxhdG9yT3B0aW9ucy5EZWxlZ2F0ZS5ObmFwaUgAEkkKB3hu",
+            "bnBhY2sYBCABKAsyNi5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRvck9w",
+            "dGlvbnMuRGVsZWdhdGUuWG5ucGFja0gAGggKBlRmTGl0ZRqEBQoDR3B1EiMK",
+            "FHVzZV9hZHZhbmNlZF9ncHVfYXBpGAEgASgIOgVmYWxzZRJICgNhcGkYBCAB",
+            "KA4yNi5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRvck9wdGlvbnMuRGVs",
+            "ZWdhdGUuR3B1LkFwaToDQU5ZEiIKFGFsbG93X3ByZWNpc2lvbl9sb3NzGAMg",
+            "ASgIOgR0cnVlEhoKEmNhY2hlZF9rZXJuZWxfcGF0aBgCIAEoCRIcChRzZXJp",
+            "YWxpemVkX21vZGVsX2RpchgHIAEoCRJ3ChZjYWNoZV93cml0aW5nX2JlaGF2",
+            "aW9yGAogASgOMkcubWVkaWFwaXBlLkluZmVyZW5jZUNhbGN1bGF0b3JPcHRp",
+            "b25zLkRlbGVnYXRlLkdwdS5DYWNoZVdyaXRpbmdCZWhhdmlvcjoOV1JJVEVf",
+            "T1JfRVJST1ISEwoLbW9kZWxfdG9rZW4YCCABKAkSYQoFdXNhZ2UYBSABKA4y",
+            "QS5tZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRvck9wdGlvbnMuRGVsZWdh",
+            "dGUuR3B1LkluZmVyZW5jZVVzYWdlOg9TVVNUQUlORURfU1BFRUQiJgoDQXBp",
+            "EgcKA0FOWRAAEgoKBk9QRU5HTBABEgoKBk9QRU5DTBACIkcKFENhY2hlV3Jp",
+            "dGluZ0JlaGF2aW9yEgwKCE5PX1dSSVRFEAASDQoJVFJZX1dSSVRFEAESEgoO",
+            "V1JJVEVfT1JfRVJST1IQAiJOCg5JbmZlcmVuY2VVc2FnZRIPCgtVTlNQRUNJ",
+            "RklFRBAAEhYKEkZBU1RfU0lOR0xFX0FOU1dFUhABEhMKD1NVU1RBSU5FRF9T",
+            "UEVFRBACGkkKBU5uYXBpEhEKCWNhY2hlX2RpchgBIAEoCRITCgttb2RlbF90",
+            "b2tlbhgCIAEoCRIYChBhY2NlbGVyYXRvcl9uYW1lGAMgASgJGiIKB1hubnBh",
+            "Y2sSFwoLbnVtX3RocmVhZHMYASABKAU6Ai0xQgoKCGRlbGVnYXRlMlQKA2V4",
+            "dBIcLm1lZGlhcGlwZS5DYWxjdWxhdG9yT3B0aW9ucxj308ugASABKAsyJS5t",
+            "ZWRpYXBpcGUuSW5mZXJlbmNlQ2FsY3VsYXRvck9wdGlvbnNCQQolY29tLmdv",
+            "b2dsZS5tZWRpYXBpcGUuY2FsY3VsYXRvci5wcm90b0IYSW5mZXJlbmNlQ2Fs",
+            "Y3VsYXRvclByb3Rv"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Mediapipe.CalculatorReflection.Descriptor, global::Mediapipe.CalculatorOptionsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions), global::Mediapipe.InferenceCalculatorOptions.Parser, new[]{ "ModelPath", "UseGpu", "UseNnapi", "CpuNumThread", "Delegate" }, null, null, new pb::Extension[] { global::Mediapipe.InferenceCalculatorOptions.Extensions.Ext }, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Parser, new[]{ "Tflite", "Gpu", "Nnapi", "Xnnpack" }, new[]{ "Delegate" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.TfLite), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.TfLite.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Parser, new[]{ "UseAdvancedGpuApi", "Api", "AllowPrecisionLoss", "CachedKernelPath", "SerializedModelDir", "ModelToken", "Usage" }, null, new[]{ typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.Api), typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.InferenceUsage) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Parser, new[]{ "UseAdvancedGpuApi", "Api", "AllowPrecisionLoss", "CachedKernelPath", "SerializedModelDir", "CacheWritingBehavior", "ModelToken", "Usage" }, null, new[]{ typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.Api), typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior), typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.InferenceUsage) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Nnapi), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Nnapi.Parser, new[]{ "CacheDir", "ModelToken", "AcceleratorName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack), global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Xnnpack.Parser, new[]{ "NumThreads" }, null, null, null, null)})})
           }));
@@ -1122,6 +1128,7 @@ namespace Mediapipe {
               allowPrecisionLoss_ = other.allowPrecisionLoss_;
               cachedKernelPath_ = other.cachedKernelPath_;
               serializedModelDir_ = other.serializedModelDir_;
+              cacheWritingBehavior_ = other.cacheWritingBehavior_;
               modelToken_ = other.modelToken_;
               usage_ = other.usage_;
               _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1299,6 +1306,36 @@ namespace Mediapipe {
               serializedModelDir_ = null;
             }
 
+            /// <summary>Field number for the "cache_writing_behavior" field.</summary>
+            public const int CacheWritingBehaviorFieldNumber = 10;
+            private readonly static global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior CacheWritingBehaviorDefaultValue = global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior.WriteOrError;
+
+            private global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior cacheWritingBehavior_;
+            /// <summary>
+            /// Specifies how GPU caches are written to disk.
+            /// </summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior CacheWritingBehavior {
+              get { if ((_hasBits0 & 16) != 0) { return cacheWritingBehavior_; } else { return CacheWritingBehaviorDefaultValue; } }
+              set {
+                _hasBits0 |= 16;
+                cacheWritingBehavior_ = value;
+              }
+            }
+            /// <summary>Gets whether the "cache_writing_behavior" field is set</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool HasCacheWritingBehavior {
+              get { return (_hasBits0 & 16) != 0; }
+            }
+            /// <summary>Clears the value of the "cache_writing_behavior" field</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void ClearCacheWritingBehavior() {
+              _hasBits0 &= ~16;
+            }
+
             /// <summary>Field number for the "model_token" field.</summary>
             public const int ModelTokenFieldNumber = 8;
             private readonly static string ModelTokenDefaultValue = "";
@@ -1377,6 +1414,7 @@ namespace Mediapipe {
               if (AllowPrecisionLoss != other.AllowPrecisionLoss) return false;
               if (CachedKernelPath != other.CachedKernelPath) return false;
               if (SerializedModelDir != other.SerializedModelDir) return false;
+              if (CacheWritingBehavior != other.CacheWritingBehavior) return false;
               if (ModelToken != other.ModelToken) return false;
               if (Usage != other.Usage) return false;
               return Equals(_unknownFields, other._unknownFields);
@@ -1391,6 +1429,7 @@ namespace Mediapipe {
               if (HasAllowPrecisionLoss) hash ^= AllowPrecisionLoss.GetHashCode();
               if (HasCachedKernelPath) hash ^= CachedKernelPath.GetHashCode();
               if (HasSerializedModelDir) hash ^= SerializedModelDir.GetHashCode();
+              if (HasCacheWritingBehavior) hash ^= CacheWritingBehavior.GetHashCode();
               if (HasModelToken) hash ^= ModelToken.GetHashCode();
               if (HasUsage) hash ^= Usage.GetHashCode();
               if (_unknownFields != null) {
@@ -1439,6 +1478,10 @@ namespace Mediapipe {
                 output.WriteRawTag(66);
                 output.WriteString(ModelToken);
               }
+              if (HasCacheWritingBehavior) {
+                output.WriteRawTag(80);
+                output.WriteEnum((int) CacheWritingBehavior);
+              }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(output);
               }
@@ -1477,6 +1520,10 @@ namespace Mediapipe {
                 output.WriteRawTag(66);
                 output.WriteString(ModelToken);
               }
+              if (HasCacheWritingBehavior) {
+                output.WriteRawTag(80);
+                output.WriteEnum((int) CacheWritingBehavior);
+              }
               if (_unknownFields != null) {
                 _unknownFields.WriteTo(ref output);
               }
@@ -1501,6 +1548,9 @@ namespace Mediapipe {
               }
               if (HasSerializedModelDir) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(SerializedModelDir);
+              }
+              if (HasCacheWritingBehavior) {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) CacheWritingBehavior);
               }
               if (HasModelToken) {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ModelToken);
@@ -1534,6 +1584,9 @@ namespace Mediapipe {
               }
               if (other.HasSerializedModelDir) {
                 SerializedModelDir = other.SerializedModelDir;
+              }
+              if (other.HasCacheWritingBehavior) {
+                CacheWritingBehavior = other.CacheWritingBehavior;
               }
               if (other.HasModelToken) {
                 ModelToken = other.ModelToken;
@@ -1584,6 +1637,10 @@ namespace Mediapipe {
                     ModelToken = input.ReadString();
                     break;
                   }
+                  case 80: {
+                    CacheWritingBehavior = (global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior) input.ReadEnum();
+                    break;
+                  }
                 }
               }
             #endif
@@ -1627,6 +1684,10 @@ namespace Mediapipe {
                     ModelToken = input.ReadString();
                     break;
                   }
+                  case 80: {
+                    CacheWritingBehavior = (global::Mediapipe.InferenceCalculatorOptions.Types.Delegate.Types.Gpu.Types.CacheWritingBehavior) input.ReadEnum();
+                    break;
+                  }
                 }
               }
             }
@@ -1645,6 +1706,21 @@ namespace Mediapipe {
                 [pbr::OriginalName("ANY")] Any = 0,
                 [pbr::OriginalName("OPENGL")] Opengl = 1,
                 [pbr::OriginalName("OPENCL")] Opencl = 2,
+              }
+
+              public enum CacheWritingBehavior {
+                /// <summary>
+                /// Do not write any caches.
+                /// </summary>
+                [pbr::OriginalName("NO_WRITE")] NoWrite = 0,
+                /// <summary>
+                /// Try to write caches, log on failure.
+                /// </summary>
+                [pbr::OriginalName("TRY_WRITE")] TryWrite = 1,
+                /// <summary>
+                /// Write caches or return an error if write fails.
+                /// </summary>
+                [pbr::OriginalName("WRITE_OR_ERROR")] WriteOrError = 2,
               }
 
               /// <summary>

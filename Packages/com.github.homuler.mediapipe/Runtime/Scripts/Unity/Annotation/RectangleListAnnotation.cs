@@ -18,11 +18,16 @@ namespace Mediapipe.Unity
     [SerializeField] private Color _color = Color.red;
     [SerializeField, Range(0, 1)] private float _lineWidth = 1.0f;
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
-      ApplyColor(_color);
-      ApplyLineWidth(_lineWidth);
+      if (!UnityEditor.PrefabUtility.IsPartOfAnyPrefab(this))
+      {
+        ApplyColor(_color);
+        ApplyLineWidth(_lineWidth);
+      }
     }
+#endif
 
     public void SetColor(Color color)
     {
@@ -36,7 +41,7 @@ namespace Mediapipe.Unity
       ApplyLineWidth(_lineWidth);
     }
 
-    public void Draw(IList<Rect> targets, Vector2Int imageSize)
+    public void Draw(IReadOnlyList<Rect> targets, Vector2Int imageSize)
     {
       if (ActivateFor(targets))
       {
@@ -47,7 +52,7 @@ namespace Mediapipe.Unity
       }
     }
 
-    public void Draw(IList<NormalizedRect> targets)
+    public void Draw(IReadOnlyList<NormalizedRect> targets)
     {
       if (ActivateFor(targets))
       {
