@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WebCamSource = HardCoded.VRigUnity.Updated.WebCamSource;
 
 namespace HardCoded.VRigUnity {
 	public class SolutionUtils {
