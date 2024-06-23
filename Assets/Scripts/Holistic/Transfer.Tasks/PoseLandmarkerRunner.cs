@@ -72,7 +72,7 @@ namespace HardCoded.VRigUnity.Updated
             callback.OnUpdateEvent += Canvas.OnLandmarks;
             Canvas.SetupAnnotations();
         }
-
+        
         public override void Stop()
         {
             base.Stop();
@@ -216,7 +216,7 @@ namespace HardCoded.VRigUnity.Updated
         /// </summary>
         public virtual void AnimateModel()
         {
-            if (!model.VrmModel.activeInHierarchy || IsPaused)
+            if (!model.VrmModel.activeInHierarchy || isPaused)
             {
                 return;
             }
