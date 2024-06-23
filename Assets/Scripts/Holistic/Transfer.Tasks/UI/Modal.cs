@@ -5,6 +5,7 @@
 // https://opensource.org/licenses/MIT.
 
 using UnityEngine;
+using HardCoded.VRigUnity.Updated;
 
 namespace Mediapipe.Unity.Sample.UI
 {

@@ -66,7 +66,7 @@ namespace HardCoded.VRigUnity.Updated
         protected void OnStartRun()
         {
             callback.ClearData();
-            HolisticConverter.Connect(graphRunner, callback);
+            //HolisticConverter.Connect(graphRunner, callback);
 
             callback.OnUpdateEvent += OnLandmarks;
             callback.OnUpdateEvent += Canvas.OnLandmarks;
@@ -304,103 +304,109 @@ namespace HardCoded.VRigUnity.Updated
 
         protected override IEnumerator Run()
         {
-                Debug.Log($"Delegate = {config.Delegate}");
-                Debug.Log($"Model = {config.ModelName}");
-                Debug.Log($"Running Mode = {config.RunningMode}");
-                Debug.Log($"NumPoses = {config.NumPoses}");
-                Debug.Log($"MinPoseDetectionConfidence = {config.MinPoseDetectionConfidence}");
-                Debug.Log($"MinPosePresenceConfidence = {config.MinPosePresenceConfidence}");
-                Debug.Log($"MinTrackingConfidence = {config.MinTrackingConfidence}");
-                Debug.Log($"OutputSegmentationMasks = {config.OutputSegmentationMasks}");
+            Debug.Log($"Delegate = {config.Delegate}");
+            Debug.Log($"Model = {config.ModelName}");
+            Debug.Log($"Running Mode = {config.RunningMode}");
+            Debug.Log($"NumPoses = {config.NumPoses}");
+            Debug.Log($"MinPoseDetectionConfidence = {config.MinPoseDetectionConfidence}");
+            Debug.Log($"MinPosePresenceConfidence = {config.MinPosePresenceConfidence}");
+            Debug.Log($"MinTrackingConfidence = {config.MinTrackingConfidence}");
+            Debug.Log($"OutputSegmentationMasks = {config.OutputSegmentationMasks}");
 
-                yield return AssetLoader.PrepareAssetAsync(config.ModelPath);
+            yield return AssetLoader.PrepareAssetAsync(config.ModelPath);
 
-                var options = config.GetPoseLandmarkerOptions(config.RunningMode == Tasks.Vision.Core.RunningMode.LIVE_STREAM ? OnPoseLandmarkDetectionOutput : null);
-                taskApi = PoseLandmarker.CreateFromOptions(options);
-                var imageSource = ImageSourceProvider.ImageSource;
+            var options = config.GetPoseLandmarkerOptions(config.RunningMode == Tasks.Vision.Core.RunningMode.LIVE_STREAM ? OnPoseLandmarkDetectionOutput : null);
+            taskApi = PoseLandmarker.CreateFromOptions(options);
+            var imageSource = ImageSourceProvider.ImageSource;
 
-                yield return imageSource.Play();
+            yield return imageSource.Play();
 
-                if (!imageSource.isPrepared)
+            if (!imageSource.isPrepared)
+            {
+            Mediapipe.Unity.Logger.LogError(TAG, "Failed to start ImageSource, exiting...");
+            yield break;
+            }
+
+            OnStartRun();
+
+            // Use RGBA32 as the input format.
+            // TODO: When using GpuBuffer, MediaPipe assumes that the input format is BGRA, so maybe the following code needs to be fixed.
+            _textureFramePool = new Experimental.TextureFramePool(imageSource.textureWidth, imageSource.textureHeight, TextureFormat.RGBA32, 10);
+
+            // NOTE: The screen will be resized later, keeping the aspect ratio.
+            screen.Initialize(imageSource);
+
+            SetupAnnotationController(_poseLandmarkerResultAnnotationController, imageSource);
+            _poseLandmarkerResultAnnotationController.InitScreen(imageSource.textureWidth, imageSource.textureHeight);
+
+            var transformationOptions = imageSource.GetTransformationOptions();
+            var flipHorizontally = transformationOptions.flipHorizontally;
+            var flipVertically = transformationOptions.flipVertically;
+            var imageProcessingOptions = new Tasks.Vision.Core.ImageProcessingOptions(rotationDegrees: (int)transformationOptions.rotationAngle);
+
+            AsyncGPUReadbackRequest req = default;
+            var waitUntilReqDone = new WaitUntil(() => req.done);
+            var result = PoseLandmarkerResult.Alloc(options.numPoses, options.outputSegmentationMasks);
+
+            while (true)
+            {
+            if (isPaused)
+            {
+                yield return new WaitWhile(() => isPaused);
+            }
+
+            if (!_textureFramePool.TryGetTextureFrame(out var textureFrame))
+            {
+                yield return new WaitForEndOfFrame();
+                continue;
+            }
+
+            // Copy current image to TextureFrame
+            req = textureFrame.ReadTextureAsync(imageSource.GetCurrentTexture(), flipHorizontally, flipVertically);
+            yield return waitUntilReqDone;
+
+            if (req.hasError)
+            {
+                Debug.LogError($"Failed to read texture from the image source, exiting...");
+                break;
+            }
+
+            var image = textureFrame.BuildCPUImage();
+            switch (taskApi.runningMode)
+            {
+                case Tasks.Vision.Core.RunningMode.IMAGE:
+                if (taskApi.TryDetect(image, imageProcessingOptions, ref result))
                 {
-                Mediapipe.Unity.Logger.LogError(TAG, "Failed to start ImageSource, exiting...");
-                yield break;
+                    _poseLandmarkerResultAnnotationController.DrawNow(result);
                 }
-
-                // Use RGBA32 as the input format.
-                // TODO: When using GpuBuffer, MediaPipe assumes that the input format is BGRA, so maybe the following code needs to be fixed.
-                _textureFramePool = new Experimental.TextureFramePool(imageSource.textureWidth, imageSource.textureHeight, TextureFormat.RGBA32, 10);
-
-                // NOTE: The screen will be resized later, keeping the aspect ratio.
-                screen.Initialize(imageSource);
-
-                SetupAnnotationController(_poseLandmarkerResultAnnotationController, imageSource);
-                _poseLandmarkerResultAnnotationController.InitScreen(imageSource.textureWidth, imageSource.textureHeight);
-
-                var transformationOptions = imageSource.GetTransformationOptions();
-                var flipHorizontally = transformationOptions.flipHorizontally;
-                var flipVertically = transformationOptions.flipVertically;
-                var imageProcessingOptions = new Tasks.Vision.Core.ImageProcessingOptions(rotationDegrees: (int)transformationOptions.rotationAngle);
-
-                AsyncGPUReadbackRequest req = default;
-                var waitUntilReqDone = new WaitUntil(() => req.done);
-                var result = PoseLandmarkerResult.Alloc(options.numPoses, options.outputSegmentationMasks);
-
-                while (true)
+                else
                 {
-                if (isPaused)
-                {
-                    yield return new WaitWhile(() => isPaused);
+                    _poseLandmarkerResultAnnotationController.DrawNow(default);
                 }
-
-                if (!_textureFramePool.TryGetTextureFrame(out var textureFrame))
+                break;
+                case Tasks.Vision.Core.RunningMode.VIDEO:
+                if (taskApi.TryDetectForVideo(image, GetCurrentTimestampMillisec(), imageProcessingOptions, ref result))
                 {
-                    yield return new WaitForEndOfFrame();
-                    continue;
+                    _poseLandmarkerResultAnnotationController.DrawNow(result);
                 }
-
-                // Copy current image to TextureFrame
-                req = textureFrame.ReadTextureAsync(imageSource.GetCurrentTexture(), flipHorizontally, flipVertically);
-                yield return waitUntilReqDone;
-
-                if (req.hasError)
+                else
                 {
-                    Debug.LogError($"Failed to read texture from the image source, exiting...");
-                    break;
+                    _poseLandmarkerResultAnnotationController.DrawNow(default);
                 }
+                break;
+                case Tasks.Vision.Core.RunningMode.LIVE_STREAM:
+                taskApi.DetectAsync(image, GetCurrentTimestampMillisec(), imageProcessingOptions);
+                break;
+            }
 
-                var image = textureFrame.BuildCPUImage();
-                switch (taskApi.runningMode)
-                {
-                    case Tasks.Vision.Core.RunningMode.IMAGE:
-                    if (taskApi.TryDetect(image, imageProcessingOptions, ref result))
-                    {
-                        _poseLandmarkerResultAnnotationController.DrawNow(result);
-                    }
-                    else
-                    {
-                        _poseLandmarkerResultAnnotationController.DrawNow(default);
-                    }
-                    break;
-                    case Tasks.Vision.Core.RunningMode.VIDEO:
-                    if (taskApi.TryDetectForVideo(image, GetCurrentTimestampMillisec(), imageProcessingOptions, ref result))
-                    {
-                        _poseLandmarkerResultAnnotationController.DrawNow(result);
-                    }
-                    else
-                    {
-                        _poseLandmarkerResultAnnotationController.DrawNow(default);
-                    }
-                    break;
-                    case Tasks.Vision.Core.RunningMode.LIVE_STREAM:
-                    taskApi.DetectAsync(image, GetCurrentTimestampMillisec(), imageProcessingOptions);
-                    break;
-                }
-
-                textureFrame.Release();
+            textureFrame.Release();
             }
         }
 
-        private void OnPoseLandmarkDetectionOutput(PoseLandmarkerResult result, Image image, long timestamp) => _poseLandmarkerResultAnnotationController.DrawLater(result);
-      }
+        private void OnPoseLandmarkDetectionOutput(PoseLandmarkerResult result, Image image, long timestamp)
+        {
+            _poseLandmarkerResultAnnotationController.DrawLater(result);
+            HolisticConverter.Convert(result, callback);
+        }
+    }
 }
